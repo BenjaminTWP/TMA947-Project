@@ -20,7 +20,18 @@ for ((k, l), b, g) in zip(edges, b_coeffs, g_coeffs)
 end
 
 # Display matrices
+# Function to pretty print matrices
+function pretty_print_matrix(mat)
+    for i in 1:size(mat, 1)
+        for j in 1:size(mat, 2)
+            print(rpad(string(mat[i, j]), 10))  # Adjust spacing as necessary
+        end
+        println()  # New line after each row
+    end
+end
+
+# Display matrices
 println("Susceptance Matrix B:")
-println(B)
+pretty_print_matrix(B)
 println("\nConductance Matrix G:")
-println(G)
+pretty_print_matrix(G)
