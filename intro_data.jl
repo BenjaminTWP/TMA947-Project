@@ -6,6 +6,9 @@ lb = [-1, -4] # Lower bounds for the variables
 ub = [3, 0] # Upper bounds for the variable
 sum_bound = 0.49 # Constraint on sum of variables
 
+neighbours = [[2,11], [1,3,11], [2,4,9], [3,5],[4,6,8], [5,7], [6,8,9], [5,7,9], [3,7,8,10], [9,11], [1,2,10]]
+display(neighbours)
+
 n_generators = 9
 lb_generators = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 up_generators = [0.02, 0.15, 0.08, 0.07, 0.04, 0.17, 0.17, 0.26, 0.05]
