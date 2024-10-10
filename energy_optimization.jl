@@ -35,12 +35,13 @@ optimize!(model)
 println("") # Printing white line after solver output, before printing
 println("Termination statue: ", JuMP.termination_status(model))
 println("Optimal(?) objective function value: ", JuMP.objective_value(model))
+println("Generator")
 println("Optimal(?) point: ", JuMP.value.(generator))
-println("")
+println("Volt")
 println("Optimal(?) point: ", JuMP.value.(v))
-println("")
+println("θ")
 println("Optimal(?) point: ", JuMP.value.(θ))
-println("")
+println("Reactive")
 println("Optimal(?) point: ", JuMP.value.(reactive))
 
 
