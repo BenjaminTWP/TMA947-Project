@@ -6,7 +6,7 @@ include("intro_data.jl")
 
 # Create the model object
 the_model = Model(Ipopt.Optimizer)
-
+n_vars = 2
 # Create (one set of) variables, and their lower and upper bounds
 @variable(the_model, lb[i] <= x[i = 1:n_vars] <= ub[i])
 
