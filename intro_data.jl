@@ -7,7 +7,7 @@ consumers_index = [[1],      [], [], [2],  [], [3],  [], [4],   [5], [6], [7]]
 generators_index = [[], [1,2,3],[4], [5], [6],  [], [7],  [], [8,9],  [],  []]
 n_generators = 9
 lb_generators = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-up_generators = [0.02, 0.15, 0.08, 0.07, 0.04, 0.17, 0.17, 0.26, 0.05]
+ub_generators = [0.02, 0.15, 0.08, 0.07, 0.04, 0.17, 0.17, 0.26, 0.05]
 cost_generator = [175, 100, 150, 150, 300, 350, 400, 300, 200]
 
 n_consumers = 7
@@ -21,6 +21,8 @@ n_voltage = 11
 lb_volt = [(1 - 0.02) for n=1:n_voltage]
 ub_volt = [(1 + 0.02) for n=1:n_voltage]
 
+lb_reactive = [(-0.03)*ub_generators[n] for n=1:n_generators]
+ub_reactive = [(0.03)*ub_generators[n] for n=1:n_generators]
 
 n_len = length(neighbours)
 B = zeros(n_len, n_len)
