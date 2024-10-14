@@ -6,7 +6,7 @@ for element in list:
         new_list.append(round(element, 6))
 
 generators = []
-for i in range(11):
+for i in range(len(list)):
         generators.append(i + 1)
 
 final_list =[]
