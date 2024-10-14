@@ -5,7 +5,7 @@ include("intro_data.jl")
 #### CONSTRAINTS
 @variable(model, lb_phase[k] <= θ[k=1:11] <= ub_phase[k])
 @variable(model, lb_volt[k] <= v[k=1:11] <= ub_volt[k])
-@variable(model, lb_generators[k] <= generator[k=1:n_generators] <= up_generators[k])
+@variable(model, lb_generators[k] <= generator[k=1:n_generators] <= ub_generators[k])
 @variable(model, lb_reactive[k] <= reactive[k=1:n_generators] <= ub_reactive[k])
 
 # Objective function is the sum of the cost of producing the electricity in each generator
