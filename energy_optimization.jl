@@ -22,8 +22,8 @@ include("intro_data.jl")
     
 @NLconstraint(model, reactivePower[n = 1:n_len], 
                 (sum(reactive[index] for index in generators_index[n]) # Generators
-                + sum(-v[n]^2 * B[n, nb] + v[n] * v[nb] * B[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * G[n, nb] * sin(θ[n] - θ[nb] -(v[nb]^2 * B[nb, n] + v[nb] * v[n] * B[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * G[nb, n] * sin(θ[nb] - θ[n])) for nb in neighbours[n])) # Outgoing FROM N TO NB
-                == 0)   )
+                + sum(-v[n]^2 * B[n, nb] + v[n] * v[nb] * B[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * G[n, nb] * sin(θ[n] - θ[nb]) -(v[nb]^2 * B[nb, n] + v[nb] * v[n] * B[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * G[nb, n] * sin(θ[nb] - θ[n])) for nb in neighbours[n])) # Outgoing FROM N TO NB
+                == 0)   
 
 #println(model)
 
