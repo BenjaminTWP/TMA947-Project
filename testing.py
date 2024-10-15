@@ -14,5 +14,13 @@ fish = zip(generators, new_list)
 for el1, el2 in fish:
         final_list.append(f"Volt {el1} : {el2}")
 
-print(len(final_list))
-print(final_list)
+
+maximum = [0.02, 0.15, 0.08, 0.07, 0.04, 0.17, 0.17, 0.26, 0.05]
+generating = [0.020000009942614277, 0.1500000099598905, 0.08000000994985046, 0.07000000994984801, 0.04000000979874183, 0.1199999404663756, -9.799632571853605e-9, 0.2600000097992102, 0.05000000993310164]
+new_list2 = []
+for el1, el2 in zip(maximum, generating):
+        new_list2.append(el2/el1)
+print(new_list2)
+
+
+        
