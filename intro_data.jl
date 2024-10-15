@@ -41,4 +41,3 @@ for ((k, l), b, g) in zip(edges, b_coeffs, g_coeffs)
     B[l, k] = b
     G[l, k] = g
 end
-
