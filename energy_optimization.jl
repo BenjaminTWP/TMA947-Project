@@ -64,7 +64,7 @@ println("Reactive power:")
 for n in 1:n_len
     println("   Flows from node $n")
     for nb in neighbours[n]
-        net_flow = sum(JuMP.value.(-v[nb]^2 * B[nb, n] + v[nb] * v[n] * B[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * G[nb, n] * sin(θ[nb] - θ[n]))) # Reactive power flowing from n to nb
+        net_flow = sum(JuMP.value.(-v[n]^2 * B[n, nb] + v[n] * v[nb] * B[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * G[n, nb] * sin(θ[n] - θ[nb]))) # Reactive power flowing from n to nb
         # - sum(JuMP.value.(-v[n]^2 * B[n, nb] + v[n] * v[nb] * B[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * G[n, nb] * sin(θ[n] - θ[nb]))) # Incoming FROM NB TO N
         # + sum(JuMP.value.(-v[nb]^2 * B[nb, n] + v[nb] * v[n] * B[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * G[nb, n] * sin(θ[nb] - θ[n]))) # Outgoing FROM N TO NB
         println("From node $n to node $nb the net flow is $net_flow")
