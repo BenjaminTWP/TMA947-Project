@@ -60,6 +60,21 @@ end
 
 println("")
 
+println("Active power ratio:")
+for n in 1:n_len
+    println("   Flows from node $n")
+    for nb in neighbours[n]
+        ratio = sum(JuMP.value.( (v[n]^2 * G[n, nb] - v[n] * v[nb] * G[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * B[n, nb] * sin(θ[n] - θ[nb])) / (v[nb]^2 * G[nb, n] - v[nb] * v[n] * G[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * B[nb, n] * sin(θ[nb] - θ[n])) )) # Active ratio
+
+        # sum(JuMP.value.(v[nb]^2 * G[nb, n] - v[nb] * v[n] * G[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * B[nb, n] * sin(θ[nb] - θ[n]))) # Incoming FROM N TO NB
+        # - sum(JuMP.value.(v[n]^2 * G[n, nb] - v[n] * v[nb] * G[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * B[n, nb] * sin(θ[n] - θ[nb]))) # Outgoing FROM NB TO N
+                
+        println("Ratio net flow $n to node $nb divided by $nb to node $n is $ratio")
+    end
+end
+
+println("")
+
 println("Reactive power:")
 for n in 1:n_len
     println("   Flows from node $n")
@@ -71,6 +86,18 @@ for n in 1:n_len
     end
 end
 
+println("")
+
+println("Reactive power ratio:")
+for n in 1:n_len
+    println("   Flows from node $n")
+    for nb in neighbours[n]
+        ratio = sum(JuMP.value.( (-v[n]^2 * B[n, nb] + v[n] * v[nb] * B[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * G[n, nb] * sin(θ[n] - θ[nb])) / (-v[nb]^2 * B[nb, n] + v[nb] * v[n] * B[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * G[nb, n] * sin(θ[nb] - θ[n])) )) # Reactive power flowing from n to nb
+        # - sum(JuMP.value.(-v[n]^2 * B[n, nb] + v[n] * v[nb] * B[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * G[n, nb] * sin(θ[n] - θ[nb]))) # Incoming FROM NB TO N
+        # + sum(JuMP.value.(-v[nb]^2 * B[nb, n] + v[nb] * v[n] * B[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * G[nb, n] * sin(θ[nb] - θ[n]))) # Outgoing FROM N TO NB
+        println("Ratio net flow $n to node $nb divided by $nb to node $n is $ratio")
+    end
+end
 
 
 
