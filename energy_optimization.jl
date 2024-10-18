@@ -63,18 +63,9 @@ for n in 1:n_len
     println("   Flows from node $n")
     for nb in neighbours[n]
         net_flow =
-            #JuMP.value.(sum(reactive[index] for index in generators_index[n]; init=0)) # Generators 
             JuMP.value.(-v[n]^2 * B[n, nb] + v[n] * v[nb] * B[n, nb] * cos(θ[n] - θ[nb]) - v[n] * v[nb] * G[n, nb] * sin(θ[n] - θ[nb])) #  FROM N TO NB
             - JuMP.value.(-v[nb]^2 * B[nb, n] + v[nb] * v[n] * B[nb, n] * cos(θ[nb] - θ[n]) - v[nb] * v[n] * G[nb, n] * sin(θ[nb] - θ[n])) #  FROM NB TO N
         println("From node $n to node $nb the net flow is $net_flow")
     end
 end
-
-for n in 1:n_len
-    println("for node $n")
-    for index in generators_index[n]
-        println(JuMP.value.(reactive[index]))
-    end
-end
-
 
